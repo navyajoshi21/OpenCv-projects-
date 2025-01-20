@@ -7,9 +7,8 @@ import serial
 import numpy as np
 
 # Now, I need to set up communication with my Arduino.
-# I'm using COM3 here because that's where my Arduino is connected on my PC.
-# If you're on Linux or Mac, the port will look different, like '/dev/ttyUSB0'.
-arduino = serial.Serial('COM3', 9600)
+# I'm using COM5 here because that's where my Arduino is connected on my PC.
+arduino = serial.Serial('COM5', 9600)
 
 # Next, I'm setting up my webcam. `0` means the default webcam.
 # If you have multiple cameras, you might need to change this to `1` or another number.
