@@ -1,0 +1,15 @@
+Objective:
+To learn how to integrate computer vision with hardware control, 
+introducing basics of OpenCV, Python, and Arduino programming 
+while making an interactive hardware-based project.
+
+Functionality:
+If 1 finger is detected, LED 1 (connected to pin 13) lights up.
+If 2 fingers are detected, LEDs 1 and 2 (pins 13 and 12) light up.
+If 3 fingers are detected, all three LEDs (pins 13, 12, and 11) light up.
+No fingers detected will turn off all LEDs.
+
+Hardware Connections:
+Ensure the LED is connected correctly:
+The longer leg (anode) should be connected to the Arduino pin (e.g., pin 13).
+The shorter leg (cathode) with the resistor and then should be connected to GND.
