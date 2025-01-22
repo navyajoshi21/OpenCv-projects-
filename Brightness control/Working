@@ -1,0 +1,13 @@
+1. Activate the Camera: The webcam captures video and shows your hand movements in real-time.
+
+2. Detect Hand Landmarks: The system tracks your hand and marks the positions of your fingers, especially the thumb and index fingers.
+
+3. Measure Thumb and Index Finger Distance: It calculates how far apart your thumb and index finger are.
+
+4. Control Brightness:
+If your fingers are close (thumb and index together), it increases the screen brightness.
+If your fingers are far apart, it decreases the screen brightness.
+Update Display: The live video feed, with hand landmarks, is shown on the screen.
+
+5. Exit: Press 'q' to stop the program.
+
