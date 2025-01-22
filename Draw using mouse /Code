@@ -1,0 +1,52 @@
+import cv2
+import numpy as np
+
+# Global variables
+drawing = False  # True if the mouse is pressed
+last_x, last_y = -1, -1  # To track the last mouse position
+
+# Mouse callback function
+def draw_free(event, x, y, flags, param):
+    global drawing, last_x, last_y
+
+    if event == cv2.EVENT_LBUTTONDOWN:
+        drawing = True
+        last_x, last_y = x, y
+
+    elif event == cv2.EVENT_MOUSEMOVE:
+        if drawing:
+            cv2.line(img, (last_x, last_y), (x, y), (255, 0, 0), 5)  # Adjusted thickness for darker paint
+            last_x, last_y = x, y
+
+    elif event == cv2.EVENT_LBUTTONUP:
+        drawing = False
+
+# Capture live video feed
+cap = cv2.VideoCapture(0)  # 0 is the default camera index
+
+if not cap.isOpened():
+    print("Error: Could not open webcam.")
+    exit()
+
+cv2.namedWindow('Webcam')
+cv2.setMouseCallback('Webcam', draw_free)
+
+img = np.zeros((480, 640, 3), dtype=np.uint8)  # Black image for drawing
+
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        print("Failed to grab frame.")
+        break
+
+    # Combine live feed and drawing
+    combined = cv2.addWeighted(frame, 0.7, img, 0.3, 0)
+
+    cv2.imshow('Webcam', combined)
+
+    key = cv2.waitKey(1) & 0xFF
+    if key == 27:  # ESC key
+        break
+
+cap.release()
+cv2.destroyAllWindows()
