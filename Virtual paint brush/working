@@ -1,4 +1,4 @@
-1. Start Camera:Your webcam is activated, and the code starts capturing video frames using OpenCV.
+1. Start Camera: Your webcam is activated, and the code starts capturing video frames using OpenCV.
 
 2. Flip Frame: The video feed is flipped to behave like a mirror for intuitive interaction.
 
