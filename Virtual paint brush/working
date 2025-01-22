@@ -2,7 +2,7 @@
 
 2. Flip Frame: The video feed is flipped to behave like a mirror for intuitive interaction.
 
-3 .Convert to RGB:The frame is changed to RGB color format because Mediapipe needs it for hand detection.
+3 .Convert to RGB: The frame is changed to RGB color format because Mediapipe needs it for hand detection.
 
 4. Detect Your Hand:Mediapipe finds the shape of your hand and creates a "map" of important points (like fingertips).
 
