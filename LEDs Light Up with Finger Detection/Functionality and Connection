@@ -1,15 +1,10 @@
-Objective:
-To learn how to integrate computer vision with hardware control, 
-introducing basics of OpenCV, Python, and Arduino programming 
-while making an interactive hardware-based project.
+ Hand Detection (Python): The webcam captures your hand, and the Python code processes the image to count the number of fingers shown.
 
-Functionality:
-If 1 finger is detected, LED 1 (connected to pin 13) lights up.
-If 2 fingers are detected, LEDs 1 and 2 (pins 13 and 12) light up.
-If 3 fingers are detected, all three LEDs (pins 13, 12, and 11) light up.
-No fingers detected will turn off all LEDs.
+Finger Count: Based on the hand's contours and convexity defects, Python counts how many fingers are being shown and sends a corresponding number (0-3) via serial communication to the Arduino.
 
-Hardware Connections:
-Ensure the LED is connected correctly:
-The longer leg (anode) should be connected to the Arduino pin (e.g., pin 13).
-The shorter leg (cathode) with the resistor and then should be connected to GND.
+Arduino Response: The Arduino receives the serial data (number of fingers) and lights up a specific number of LEDs:
+
+1 finger: Turns on LED 1.
+2 fingers: Turns on LED 1 & LED 2.
+3 or more fingers: Turns on all 3 LEDs.
+No fingers: Turns off all LEDs.
