@@ -1,0 +1,15 @@
+1. Shape Detection (Python):
+The webcam captures frames, and the Python code processes these frames to detect shapes.
+The image is converted to grayscale, blurred, and edge detection (Canny) is applied to find contours.
+
+2. Contour Analysis:
+For each detected contour, the code approximates the shape and checks how many vertices (corners) it has.
+The shape is identified based on the number of vertices:
+3 vertices: Triangle
+4 vertices: Square or Rectangle (checked using aspect ratio)
+5 vertices: Pentagon
+More than 5 vertices: Circle
+Unknown shape: If none of the above conditions are met.
+
+3.Shape Labeling:
+The code calculates the centroid of each contour and displays the name of the shape (Triangle, Square, Rectangle, Pentagon, or Circle) near the shape in the webcam feed.
