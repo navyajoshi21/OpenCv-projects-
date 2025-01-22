@@ -1,35 +1,23 @@
-Start Camera:
+1. Start Camera:Your webcam is activated, and the code starts capturing video frames using OpenCV.
 
-Your webcam is activated, and the code starts capturing video frames using OpenCV.
-Flip Frame:
+2. Flip Frame: The video feed is flipped to behave like a mirror for intuitive interaction.
 
-The video feed is flipped to behave like a mirror for intuitive interaction.
-Convert to RGB:
+3 .Convert to RGB:The frame is changed to RGB color format because Mediapipe needs it for hand detection.
 
-The frame is changed to RGB color format because Mediapipe needs it for hand detection.
-Detect Your Hand:
+4. Detect Your Hand:Mediapipe finds the shape of your hand and creates a "map" of important points (like fingertips).
 
-Mediapipe finds the shape of your hand and creates a "map" of important points (like fingertips).
-Mark Fingers:
+5 .Mark Fingers:It identifies the tip of your index finger and thumb from the map.
 
-It identifies the tip of your index finger and thumb from the map.
-Measure Finger Distance:
-
-It calculates how far apart your index finger and thumb are. This tells whether you’re drawing or not:
+6. Measure Finger Distance:It calculates how far apart your index finger and thumb are. This tells whether you’re drawing or not:
 Close = Pen Up (no drawing)
 Far = Pen Down (draw!)
-Pick Colors:
 
-If your finger hovers over a color button, it changes the "paint" color to match the button.
-Draw on Canvas:
+7. Pick Colors:If your finger hovers over a color button, it changes the "paint" color to match the button.
 
-When your fingers are apart, a circle of the selected color is drawn on an invisible canvas at your finger's position.
-Blend Layers:
+8. Draw on Canvas:When your fingers are apart, a circle of the selected color is drawn on an invisible canvas at your finger's position.
 
-OpenCV combines the invisible canvas with the live video so it looks like you’re drawing directly on the screen.
-Show the Result:
+9. Blend Layers:OpenCV combines the invisible canvas with the live video so it looks like you’re drawing directly on the screen.
 
-The final output is displayed in a window, updating in real-time.
-Exit:
+10. Show the Result:The final output is displayed in a window, updating in real-time.
 
-Pressing 'q' stops everything and closes the application.
+11. Exit:Pressing 'q' stops everything and closes the application.
