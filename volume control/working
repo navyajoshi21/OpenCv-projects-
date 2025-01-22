@@ -1,0 +1,12 @@
+1. Activate the Camera: The webcam captures live video of your hand movements.
+
+2. Detect Hands: The system looks for your hand and tracks key points (fingertips).
+
+3 .Measure Thumb and Index Finger Distance: The system checks how far apart your thumb and index finger are.
+
+4. Control Volume:
+If your fingers are close (thumb and index close together), it increases the volume.
+If your fingers are far apart, it decreases the volume.
+Display the Result: It shows the webcam feed with hand landmarks, so you can see the hand detection in action.
+
+5. Stop: Pressing 'q' stops the system.
