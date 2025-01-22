@@ -1,0 +1,13 @@
+1. Webcam Feed Capture: The project uses your webcam to capture live video.
+
+2. Mouse Interaction:When you press the left mouse button, the drawing mode starts.
+While dragging the mouse, lines are drawn on the screen.
+Releasing the left mouse button stops drawing.
+
+3. Drawing on the Feed:The drawing appears on top of the live video, combining both the webcam feed and the drawings in a blended view.
+The line color is blue (RGB: 255, 0, 0), and the thickness is set to 5 pixels for a bold appearance.
+
+4. Exit the Program: Press the ESC key to exit and close the window.
+
+5. No Pen or Brush Tool: You are using just the mouse for drawing freely, without the need for any additional tools or buttons.
+
