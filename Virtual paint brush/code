@@ -1,0 +1,75 @@
+import cv2
+import mediapipe as mp
+import numpy as np
+
+# Initialize Mediapipe for Hand Detection
+mp_hands = mp.solutions.hands
+hands = mp_hands.Hands(static_image_mode=False, max_num_hands=1, min_detection_confidence=0.7)
+mp_draw = mp.solutions.drawing_utils
+
+# Create a Color Palette and Canvas
+colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (0, 0, 0)]  # Blue, Green, Red, Black (eraser)
+color_names = ["Blue", "Green", "Red", "Eraser"]
+selected_color = colors[0]
+canvas = None
+
+# Capture Live Video Feed
+cap = cv2.VideoCapture(0)
+
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        break
+
+    frame = cv2.flip(frame, 1)  # Mirror the frame
+    h, w, _ = frame.shape
+
+    if canvas is None:
+        canvas = np.zeros((h, w, 3), dtype=np.uint8)
+
+    # Convert the frame to RGB for Mediapipe
+    rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    results = hands.process(rgb_frame)
+
+    # Draw buttons for color selection
+    for i, color in enumerate(colors):
+        cv2.rectangle(frame, (10 + i*70, 10), (60 + i*70, 60), color, -1)
+        cv2.putText(frame, color_names[i], (10 + i*70, 75), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
+
+    # Check for hand landmarks
+    if results.multi_hand_landmarks:
+        for hand_landmarks in results.multi_hand_landmarks:
+            mp_draw.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+            index_finger_tip = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP]
+            thumb_tip = hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP]
+
+            x, y = int(index_finger_tip.x * w), int(index_finger_tip.y * h)
+            thumb_x, thumb_y = int(thumb_tip.x * w), int(thumb_tip.y * h)
+
+            # Calculate the distance between the thumb and index finger
+            distance = np.sqrt((x - thumb_x)**2 + (y - thumb_y)**2)
+
+            # Color selection logic
+            if y < 60:
+                for i in range(len(colors)):
+                    if 10 + i*70 < x < 60 + i*70:
+                        selected_color = colors[i]
+
+            # Drawing on the canvas (only if fingers are not closed)
+            elif distance > 40:  # Adjust the threshold as needed
+                if selected_color == (0, 0, 0):  # Eraser
+                    cv2.circle(canvas, (x, y), 20, selected_color, -1)
+                else:
+                    cv2.circle(canvas, (x, y), 10, selected_color, -1)
+
+    # Merge the canvas and frame
+    blended = cv2.addWeighted(frame, 0.7, canvas, 0.3, 0)
+
+    cv2.imshow("Virtual Paint Brush", blended)
+
+    key = cv2.waitKey(1)
+    if key == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
